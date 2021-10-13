@@ -3,31 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"> <!-- primefaces lib -->
 <h:head>
 	<title>Credit Calculator</title>
 </h:head>
 <h:body>
 
-	<h1>Credit Calculator</h1>
+	
+	<p:panel header="Credit Calculator" style="1em auto" toggleable="true" closeable="true" toggleSpeed="1000">
+	
 
 	<h:form id="bla">
-  		kwota: <h:inputText value="#{creditBB.value}" />
-		<br />
-  		lata: <h:inputText value="#{creditBB.years}" />
-		<br />
-		procent: <h:inputText value="#{creditBB.percent}" />
-		<br />
-		<h:messages id="msg" />
-
-		<h:commandButton value="Dodaj" action="#{creditBB.calc()}"/>
-		<br />
-		<h:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}">
-			<f:ajax execute="@form" render="msg" />
-		</h:commandButton>
-		<br />
-		<h:commandLink value="Informacje" action="#{creditBB.info()}" />
+		<h:panelGrid id="grid" columns="3" cellpadding="5">
+  			<p:outputLabel for="kwota" value="kwota"></p:outputLabel>
+  			<p:inputText id="kwota" value="#{creditBB.value}" required="true" requiredMessage="Brak kwoty" />
+  			<p:message for="kwota"></p:message>
+  			<p:outputLabel for="lata" value="lata"></p:outputLabel>
+  			<p:inputText id="lata" value="#{creditBB.years}" required="true" requiredMessage="Brak lat" />
+			<p:message for="lata"></p:message>
+			<p:outputLabel for="procent" value="procent"></p:outputLabel> 
+			<p:inputText id="procent" value="#{creditBB.percent}" required="true" requiredMessage="Brak procentu" />
+			<p:message for="procent"></p:message>
+		
+		
+		
+			<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
+			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+			
+		</h:panelGrid>
+	<p:commandLink value="Informacje" action="#{creditBB.info()}" />
+	<p:growl id="msg" showDetail="true" sticky="true"/>
+	
 	</h:form>
-
+	</p:panel>
 </h:body>
 </html>

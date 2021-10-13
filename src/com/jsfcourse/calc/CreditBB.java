@@ -79,7 +79,7 @@ public class CreditBB {
 	// Go to "showresult" if ok
 	public String calc() {
 		if (doTheMath()) {
-			return "showresult";
+			return "showresult"; 
 		}
 		return null;
 	}
