@@ -43,18 +43,19 @@
 			requiredMessage="Brak procentu"
 			converterMessage="Procent musi byc liczba"
 			validatorMessage="Procent musi wynosic minimum 5">
-			<f:validateDoubleRange minimum="2"/>
+			<f:validateDoubleRange minimum="5"/>
 			</p:inputText>
 			<p:message for="procent"></p:message>
 		
 		
 		
 			<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
-			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="@form"/>
+			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
 			
 		</h:panelGrid>
 	<p:commandLink value="Informacje" action="#{creditBB.info()}" />
 	
+	<p:growl id="msg"/>
 	
 	</h:form>
 	</p:panel>
