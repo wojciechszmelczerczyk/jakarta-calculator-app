@@ -5,59 +5,58 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"> <!-- primefaces lib -->
-<h:head>
-	<title>Credit Calculator</title>
-</h:head>
-<h:body>
 
-	
-	<p:panel header="Credit Calculator" style="1em auto" toggleable="true" closeable="true" toggleSpeed="1000">
+	<ui:composition template="/templates/page-template.xhtml">
+		<ui:define name="pageContent">
+			<p:panel header="Credit Calculator" style="1em auto" toggleable="true" closeable="true" toggleSpeed="1000">
 	
 
-	<h:form id="bla">
-		<h:panelGrid id="grid" columns="3" cellpadding="5">
+			<h:form id="bla">
+			<h:panelGrid id="grid" columns="3" cellpadding="5">
   			
-  			<p:outputLabel for="kwota" value="kwota"></p:outputLabel>
-  			<p:inputText id="kwota" value="#{creditBB.value}" 
-  			required="true" 
-  			requiredMessage="Brak kwoty" 
-  			converterMessage="Kwota musi byc liczba" 
-  			validatorMessage="Kwota musi wynosic minimum 10">
-  			<f:validateDoubleRange minimum="10"/> <!-- validation -->
-  			</p:inputText>
-  			<p:message for="kwota"></p:message>
+  				<p:outputLabel for="kwota" value="kwota"></p:outputLabel>
+  				<p:inputText id="kwota" value="#{creditBB.value}" 
+  				required="true" 
+  				requiredMessage="Brak kwoty" 
+  				converterMessage="Kwota musi byc liczba" 
+  				validatorMessage="Kwota musi wynosic minimum 10">
+  				<f:validateDoubleRange minimum="10"/> <!-- validation -->
+  				</p:inputText>
+  				<p:message for="kwota"></p:message>
   			
-  			<p:outputLabel for="lata" value="lata"></p:outputLabel>
-  			<p:inputText id="lata" value="#{creditBB.years}" 
-  			required="true" 
-  			requiredMessage="Brak lat"
-  			converterMessage="Lata musza byc liczba"
-  			validatorMessage="Minimum dwa lata">
-  			<f:validateDoubleRange minimum="2"/>
-  			</p:inputText>
-			<p:message for="lata"></p:message>
+  				<p:outputLabel for="lata" value="lata"></p:outputLabel>
+  				<p:inputText id="lata" value="#{creditBB.years}" 
+  				required="true" 
+  				requiredMessage="Brak lat"
+  				converterMessage="Lata musza byc liczba"
+  				validatorMessage="Minimum dwa lata">
+  				<f:validateDoubleRange minimum="2"/>
+  				</p:inputText>
+				<p:message for="lata"></p:message>
 			
-			<p:outputLabel for="procent" value="procent"></p:outputLabel> 
-			<p:inputText id="procent" value="#{creditBB.percent}" 
-			required="true" 
-			requiredMessage="Brak procentu"
-			converterMessage="Procent musi byc liczba"
-			validatorMessage="Procent musi wynosic minimum 5">
-			<f:validateDoubleRange minimum="5"/>
-			</p:inputText>
-			<p:message for="procent"></p:message>
+				<p:outputLabel for="procent" value="procent"></p:outputLabel> 
+				<p:inputText id="procent" value="#{creditBB.percent}" 
+				required="true" 
+				requiredMessage="Brak procentu"
+				converterMessage="Procent musi byc liczba"
+				validatorMessage="Procent musi wynosic minimum 5">
+				<f:validateDoubleRange minimum="5"/>
+				</p:inputText>
+				<p:message for="procent"></p:message>
 		
 		
 		
-			<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
-			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+				<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
+				<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
 			
-		</h:panelGrid>
-	<p:commandLink value="Informacje" action="#{creditBB.info()}" />
+			</h:panelGrid>
+			<p:commandLink value="Informacje" action="#{creditBB.info()}" />
 	
-	<p:growl id="msg"/>
+			<p:growl id="msg"/>
 	
-	</h:form>
-	</p:panel>
-</h:body>
+			</h:form>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+
 </html>
