@@ -16,24 +16,45 @@
 
 	<h:form id="bla">
 		<h:panelGrid id="grid" columns="3" cellpadding="5">
+  			
   			<p:outputLabel for="kwota" value="kwota"></p:outputLabel>
-  			<p:inputText id="kwota" value="#{creditBB.value}" required="true" requiredMessage="Brak kwoty" />
+  			<p:inputText id="kwota" value="#{creditBB.value}" 
+  			required="true" 
+  			requiredMessage="Brak kwoty" 
+  			converterMessage="Kwota musi byc liczba" 
+  			validatorMessage="Kwota musi wynosic minimum 10">
+  			<f:validateDoubleRange minimum="10"/> <!-- validation -->
+  			</p:inputText>
   			<p:message for="kwota"></p:message>
+  			
   			<p:outputLabel for="lata" value="lata"></p:outputLabel>
-  			<p:inputText id="lata" value="#{creditBB.years}" required="true" requiredMessage="Brak lat" />
+  			<p:inputText id="lata" value="#{creditBB.years}" 
+  			required="true" 
+  			requiredMessage="Brak lat"
+  			converterMessage="Lata musza byc liczba"
+  			validatorMessage="Minimum dwa lata">
+  			<f:validateDoubleRange minimum="2"/>
+  			</p:inputText>
 			<p:message for="lata"></p:message>
+			
 			<p:outputLabel for="procent" value="procent"></p:outputLabel> 
-			<p:inputText id="procent" value="#{creditBB.percent}" required="true" requiredMessage="Brak procentu" />
+			<p:inputText id="procent" value="#{creditBB.percent}" 
+			required="true" 
+			requiredMessage="Brak procentu"
+			converterMessage="Procent musi byc liczba"
+			validatorMessage="Procent musi wynosic minimum 5">
+			<f:validateDoubleRange minimum="2"/>
+			</p:inputText>
 			<p:message for="procent"></p:message>
 		
 		
 		
 			<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
-			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="msg"/>
+			<p:commandButton value="Dodaj (AJAX)" action="#{creditBB.calc_AJAX()}" update="@form"/>
 			
 		</h:panelGrid>
 	<p:commandLink value="Informacje" action="#{creditBB.info()}" />
-	<p:growl id="msg" showDetail="true" sticky="true"/>
+	
 	
 	</h:form>
 	</p:panel>

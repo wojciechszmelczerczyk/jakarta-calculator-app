@@ -12,9 +12,9 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditBB {
-	private String value;
-	private String years;
-	private String percent;
+	private Double value; // change to Integer for validation
+	private Integer years;
+	private Double percent; // change to Double for validataion
 	private Integer months;
 	private Double q;
 	private Double result;
@@ -22,27 +22,27 @@ public class CreditBB {
 	@Inject
 	FacesContext ctx;
 
-	public String getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 
-	public String getYears() {
+	public Integer getYears() {
 		return years;
 	}
 
-	public void setYears(String years) {
+	public void setYears(Integer years) {
 		this.years = years;
 	}
 	
-	public String getPercent() {
+	public Double getPercent() {
 		return percent;
 	}
 
-	public void setPercent(String percent) {
+	public void setPercent(Double percent) {
 		this.percent = percent;
 	}
 	
@@ -56,11 +56,9 @@ public class CreditBB {
 		this.result = result;
 	}
 
+
 	public boolean doTheMath() {
 		try {
-			double value = Double.parseDouble(this.value);
-			double years = Double.parseDouble(this.years);
-			double percent = Double.parseDouble(this.percent);
 			
 			months = 12;
 			q = 1 + (percent/months);
@@ -75,7 +73,8 @@ public class CreditBB {
 			return false;
 		}
 	}
-
+	
+	
 	// Go to "showresult" if ok
 	public String calc() {
 		if (doTheMath()) {
